@@ -11,11 +11,45 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Repositorio
         {
             _contexto = contexto;
         }
+
+        public void Apagar(int id)
+        {
+            var raca = _contexto.Racas.Where(x => x.Id == id).FirstOrDefault();
+
+            _contexto.Racas.Remove(raca);
+        }
+
+        public void Atualizar(Raca racaParaAlterar)
+        {
+            var raca = _contexto.Racas.Where(x => x.Id == racaParaAlterar.Id).FirstOrDefault();
+
+            raca.Nome = racaParaAlterar.Nome; 
+            raca.Especie = racaParaAlterar.Especie;
+
+            _contexto.Update(raca);
+        }
+
         public void Cadastrar(Raca raca)
         {
             //INSERT na tabela de raças
             _contexto.Racas.Add(raca);
             _contexto.SaveChanges();
+        }
+
+        public Raca ObterPorId(int id)
+        {
+            var raca = _contexto.Racas.Where(x => x.Id == id).FirstOrDefault();
+
+            return raca;
+        }
+
+        public List<Raca> ObterTodos()
+        {
+            //Buscar todos os registros de raças
+            //SELECT * FROM racas
+            var racas = _contexto.Racas.ToList();
+
+            return racas;
         }
     }
 }
