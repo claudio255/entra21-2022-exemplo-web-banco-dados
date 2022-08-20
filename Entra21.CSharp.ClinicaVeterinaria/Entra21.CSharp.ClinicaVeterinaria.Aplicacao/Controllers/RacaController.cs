@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
 {
-    // Dois pontos mais pra frente é sobre Herença
     public class RacaController : Controller
     {
         private readonly IRacaServico _racaServico;
